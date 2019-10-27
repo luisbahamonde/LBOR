@@ -12,6 +12,17 @@
 
 <ion-content>
 
+    <div *ngIf="!persona">
+        <ion-list>
+            <ion-item text-wrap class="empty-state" *ngIf="1">
+                <ion-label>
+                    <img src="assets/img/slides/sand_clock-clock.svg" alt="">
+                    <p>Busca empresas o personas</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+
     <div *ngIf="persona">
         <h1 padding>{{persona.name}}</h1>
 
