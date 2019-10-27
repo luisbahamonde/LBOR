@@ -5,11 +5,74 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
 
-        <ion-title>{{idPersona}}</ion-title>
-        
+        <ion-title>{{persona ? persona.name : idPersona}}</ion-title>
+
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <div *ngIf="persona">
+        <h1 padding>{{persona.name}}</h1>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Informacion basica</ion-label>
+            </ion-list-header>
+            <ion-item>
+                <ion-label>Ultima actualizacion</ion-label>
+                <ion-note slot="end" color="medium">{{persona.date_updated | date:'dd/MM/yyyy'}}</ion-note>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Cargos actuales</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of persona.cargos_actuales">
+                <ion-label text-wrap>
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.title}}</p>
+                    <p>{{item.date_from | date:'dd/MM/yyyy'}} - Actualidad</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Historial cargos</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of persona.cargos_historial">
+                <ion-label text-wrap>
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.title}}</p>
+                    <p *ngIf="item.date_from"><span>{{item.date_from | date:'dd/MM/yyyy'}} - </span> {{item.date_to | date:'dd/MM/yyyy'}}</p>
+                    <p *ngIf="!item.date_from"><span>Hasta </span> {{item.date_to | date:'dd/MM/yyyy'}}</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Sociedades relacionadas</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of persona.in_companies">
+                <ion-label text-wrap>
+                    <h2>{{item}}</h2>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Bornes</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of persona.in_bormes">
+                <ion-label text-wrap>
+                    <h2>{{item.cve}}</h2>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
 
 </ion-content>

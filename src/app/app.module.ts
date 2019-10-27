@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {Keyboard } from '@ionic-native/keyboard/ngx';
 import {HTTP} from '@ionic-native/http/ngx';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -32,6 +33,7 @@ registerLocaleData(es);
     providers: [
         StatusBar,
         SplashScreen,
+        Keyboard,
         HTTP,
         {provide: LOCALE_ID, useValue: 'es'},
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}

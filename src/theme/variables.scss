@@ -75,3 +75,25 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+ion-list-header {
+  ion-label {
+
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  border-bottom: 1px dashed #222428;
+}
+
+
+ion-note{
+  font-size: .9em;
+}
+
+
+ion-item {
+  --border-color: #dedfe1;
+}
+
+@import "ionEmpty";

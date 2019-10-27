@@ -1,8 +1,8 @@
 <ion-header>
 
     <ion-toolbar color="primary">
-        <ion-searchbar [(ngModel)]="bucadorInput" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"
-                       debounce="1000" showCancelButton="focus" cancelButtonText="Cancelar"
+        <ion-searchbar [(ngModel)]="bucadorInput" (search)="buscar($event)" (ionClear)="deleteItems()"
+                       debounce="1000" showCancelButton="never" cancelButtonText="Cancelar"
                        placeholder="Buscar"></ion-searchbar>
     </ion-toolbar>
 
@@ -24,17 +24,30 @@
 
 <ion-content>
 
+    <div *ngIf="!personas && !empresas">
+        <ion-list>
+            <ion-item text-wrap class="empty-state" *ngIf="1">
+                <ion-label>
+                    <img src="assets/img/slides/chart-analysis.svg" alt="">
+                    <p>Busca empresas o personas</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+    </div>
+
     <div *ngIf="tipoBusqueda=='all' || tipoBusqueda== 'emp'">
         <ion-list *ngIf="empresas">
-            <ion-list-header>
+            <ion-list-header *ngIf="tipoBusqueda== 'all'">
                 <ion-label>Socidedades</ion-label>
             </ion-list-header>
             <ion-item *ngFor="let item of empresas.objects" [routerLink]="['empresa/'+item.slug]">
                 {{item.name}}
             </ion-item>
-            <ion-item *ngIf="empresas.objects.length == 0">
+            <ion-item text-wrap [ngClass]="{'small-img':tipoBusqueda=='all', 'small-place':tipoBusqueda=='all'}" class="empty-state" *ngIf="!empresas.objects || empresas.objects.length == 0">
                 <ion-label>
-                    No hay resultados de empresas
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <p>No hay resultados de empresas</p>
                 </ion-label>
             </ion-item>
         </ion-list>
@@ -42,15 +55,16 @@
 
     <div *ngIf="tipoBusqueda=='all' || tipoBusqueda== 'per'">
         <ion-list *ngIf="personas && personas.objects">
-            <ion-list-header>
+            <ion-list-header *ngIf="tipoBusqueda== 'all'">
                 <ion-label>Personas</ion-label>
             </ion-list-header>
             <ion-item *ngFor="let item of personas.objects" [routerLink]="['persona/'+item.slug]">
                 {{item.name}}
             </ion-item>
-            <ion-item *ngIf="personas.objects.length == 0">
+            <ion-item text-wrap [ngClass]="{'small-img':tipoBusqueda=='all', 'small-place':tipoBusqueda=='all'}" class="empty-state" *ngIf="!personas.objects || personas.objects.length == 0">
                 <ion-label>
-                    No hay resultados de personas
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <p>No hay resultados de personas</p>
                 </ion-label>
             </ion-item>
         </ion-list>

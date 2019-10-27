@@ -5,10 +5,85 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
 
-        <ion-title>{{idEmpresa}}</ion-title>
+        <ion-title>{{empresa?empresa.name:idEmpresa}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <div *ngIf="empresa">
+        <h1 padding>{{empresa.name}} {{empresa.type}}</h1>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Informacion basica</ion-label>
+            </ion-list-header>
+            <ion-item>
+                <ion-label>Ultima actualizacion</ion-label>
+                <ion-note slot="end" color="medium">{{empresa.date_updated | date:'dd/MM/yyyy'}}</ion-note>
+            </ion-item>
+            <ion-item>
+                <ion-label>Estado</ion-label>
+                <ion-note slot="end" color="medium">{{empresa.is_active?'Activa':'Inactiva'}}</ion-note>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Cargos actuales</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of empresa.cargos_actuales_c">
+                <ion-label text-wrap>
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.title}}</p>
+                    <p>{{item.date_from | date:'dd/MM/yyyy'}} - Actualidad</p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item *ngFor="let item of empresa.cargos_actuales_p">
+                <ion-label text-wrap>
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.title}}</p>
+                    <p>{{item.date_from | date:'dd/MM/yyyy'}} - Actualidad</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-list *ngIf="empresa.cargos_historial_c.length > 0 || empresa.cargos_historial_p.length > 0">
+            <ion-list-header>
+                <ion-label>Historico cargos</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of empresa.cargos_historial_c">
+                <ion-label text-wrap>
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.title}}</p>
+                    <p *ngIf="item.date_from"><span>{{item.date_from | date:'dd/MM/yyyy'}} - </span> {{item.date_to | date:'dd/MM/yyyy'}}</p>
+                    <p *ngIf="!item.date_from"><span>Hasta </span> {{item.date_to | date:'dd/MM/yyyy'}}</p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item *ngFor="let item of empresa.cargos_historial_p">
+                <ion-label text-wrap>
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.title}}</p>
+                    <p *ngIf="item.date_from"><span>{{item.date_from | date:'dd/MM/yyyy'}} - </span> {{item.date_to | date:'dd/MM/yyyy'}}</p>
+                    <p *ngIf="!item.date_from"><span>Hasta </span> {{item.date_to | date:'dd/MM/yyyy'}}</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Bornes</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of empresa.in_bormes">
+                <ion-label text-wrap>
+                    <h2>{{item.cve}}</h2>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+
+    </div>
 
 </ion-content>
