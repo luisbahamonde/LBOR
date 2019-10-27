@@ -46,12 +46,12 @@ export class SearchPage implements OnInit {
 
         const val = ev.target.value;
 
-        this.httpn.get('https://librebor.me/borme/api/v1/empresa/search/?q=' + val, {}, {})
+        this.httpn.get('https://librebor.me/borme/api/v1/empresa/search/?q=' + encodeURIComponent(val), {}, {})
             .then(data => {
                 this.empresas = JSON.parse(data.data);
             });
 
-        this.httpn.get('https://librebor.me/borme/api/v1/persona/search/?q=' + val, {}, {})
+        this.httpn.get('https://librebor.me/borme/api/v1/persona/search/?q=' + encodeURIComponent(val), {}, {})
             .then(data => {
                 this.personas = JSON.parse(data.data);
             });
