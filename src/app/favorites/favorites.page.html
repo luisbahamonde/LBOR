@@ -2,8 +2,31 @@
   <ion-toolbar color="primary">
     <ion-title>Favoritos</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="tipoFavorito">
+      <ion-segment-button value="emp">
+        <ion-label>Empresas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="per">
+        <ion-label>Personas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+  <div>
+    <ion-list>
+      <ion-item text-wrap class="empty-state" *ngIf="1">
+        <ion-label>
+          <img src="assets/img/slides/goal-target-idea.svg" alt="">
+          <p>Aqui apareceran tus favoritos</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 
 </ion-content>
