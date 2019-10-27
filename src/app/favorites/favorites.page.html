@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Favoritos</ion-title>
+    <div class="super-title">Favoritos</div>
   </ion-toolbar>
 
-  <ion-toolbar color="primary">
+
+  <ion-toolbar color="primary" *ngIf="false">
     <ion-segment [(ngModel)]="tipoFavorito">
       <ion-segment-button value="emp">
         <ion-label>Empresas</ion-label>
