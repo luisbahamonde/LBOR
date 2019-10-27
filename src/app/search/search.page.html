@@ -1,12 +1,16 @@
 <ion-header>
 
     <ion-toolbar color="primary">
+        <div class="super-title">Buscar</div>
+    </ion-toolbar>
+
+    <ion-toolbar color="primary">
         <ion-searchbar [(ngModel)]="bucadorInput" (search)="buscar($event)" (ionClear)="deleteItems()"
                        debounce="1000" showCancelButton="never" cancelButtonText="Cancelar"
                        placeholder="Buscar"></ion-searchbar>
     </ion-toolbar>
 
-    <ion-toolbar color="primary">
+    <ion-toolbar color="primary" *ngIf="false">
         <ion-segment [(ngModel)]="tipoBusqueda">
             <ion-segment-button value="all">
                 <ion-label>Todo</ion-label>

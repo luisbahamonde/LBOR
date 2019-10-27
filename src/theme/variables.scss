@@ -4,12 +4,12 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #1db6f6;
+  --ion-color-primary: #2377b6;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #1689ba;
-  --ion-color-primary-tint: #2bdfff;
+  --ion-color-primary-shade: #2377b6;
+  --ion-color-primary-tint: #2377b6;
 
   /** secondary **/
   --ion-color-secondary: #0cd1e8;
@@ -84,6 +84,14 @@ ion-list-header {
   }
 
   border-bottom: 1px dashed #222428;
+}
+
+ion-toolbar{
+  .super-title{
+    font-size: 1.8em;
+    font-weight: 700;
+    padding: 0 10px;
+  }
 }
 
 
