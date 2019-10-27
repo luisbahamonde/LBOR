@@ -1,5 +1,7 @@
 {
   "name": "libreBorme",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

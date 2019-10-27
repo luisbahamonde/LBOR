@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Busqueda</ion-title>
-  </ion-toolbar>
+
+    <ion-toolbar color="primary">
+        <ion-searchbar [(ngModel)]="bucadorInput" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"
+                       debounce="1000" showCancelButton="focus" cancelButtonText="Cancelar"
+                       placeholder="Buscar"></ion-searchbar>
+    </ion-toolbar>
+
+    <ion-toolbar color="primary">
+        <ion-segment [(ngModel)]="tipoBusqueda">
+            <ion-segment-button value="all">
+                <ion-label>Todo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="emp">
+                <ion-label>Empresas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="per">
+                <ion-label>Personas</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+    <div *ngIf="tipoBusqueda=='all' || tipoBusqueda== 'emp'">
+        <ion-list *ngIf="empresas">
+            <ion-list-header>
+                <ion-label>Socidedades</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of empresas.objects">
+                {{item.name}}
+            </ion-item>
+            <ion-item *ngIf="empresas.objects.length == 0">
+                <ion-label>
+                    No hay resultados de empresas
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <div *ngIf="tipoBusqueda=='all' || tipoBusqueda== 'per'">
+        <ion-list *ngIf="personas && personas.objects">
+            <ion-list-header>
+                <ion-label>Personas</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let item of personas.objects">
+                {{item.name}}
+            </ion-item>
+            <ion-item *ngIf="personas.objects.length == 0">
+                <ion-label>
+                    No hay resultados de personas
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
 
 </ion-content>
