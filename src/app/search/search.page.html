@@ -29,7 +29,7 @@
             <ion-list-header>
                 <ion-label>Socidedades</ion-label>
             </ion-list-header>
-            <ion-item *ngFor="let item of empresas.objects">
+            <ion-item *ngFor="let item of empresas.objects" [routerLink]="['empresa/'+item.slug]">
                 {{item.name}}
             </ion-item>
             <ion-item *ngIf="empresas.objects.length == 0">
@@ -45,7 +45,7 @@
             <ion-list-header>
                 <ion-label>Personas</ion-label>
             </ion-list-header>
-            <ion-item *ngFor="let item of personas.objects">
+            <ion-item *ngFor="let item of personas.objects" [routerLink]="['persona/'+item.slug]">
                 {{item.name}}
             </ion-item>
             <ion-item *ngIf="personas.objects.length == 0">
